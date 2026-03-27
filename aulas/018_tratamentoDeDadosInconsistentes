@@ -1,0 +1,42 @@
+import pandas as pd
+import seaborn as sb
+import numpy as np
+import matplotlib.pyplot as plt 
+import plotly.express as px
+ 
+tabela = pd.read_csv(r"C:\Users\caio.eariciati\Desktop\Aulas-machine-learning-em-python-main\aulas\credit_data.csv")
+
+
+#apagar a coluna 
+tabela2 = tabela.drop('age', axis = 1)
+
+
+#apagar a coluna somente aonde o dado é menor que zero (dado<0)
+tabela3 = tabela.drop(tabela[tabela['age']<0].index)
+
+ 
+ #gera o grafico da tabela3
+#grafico = px.scatter_matrix(tabela3,dimensions=['loan','age', 'income'] , color='age')
+#grafico.show()
+
+
+#localiza na tabela todos os dados menores que zero
+loc =tabela.loc[tabela['age']<0]
+
+media = tabela.mean()
+mediaIdade = tabela['age'].mean()
+
+#printa a tablea, mas a idade é a media de todas as idades que são maior que zero
+#print(tabela['age'][tabela['age']>0].mean())
+
+#printa apenas a media da idade, onde todas as idades são maior que zero
+idadeTratada = tabela[tabela['age']>0].mean()
+
+
+#adiciona o valor de 40.92(a media de idade) em todas as linhas que a idade é negativa ou menor que 0
+tabela.loc[tabela['age']<0 , 'age'] = 40.92
+
+#printar todas as linhas que a idade é igual a 40.92
+print(tabela.loc[tabela['age']==40.92])
+
+print(tabela.head(50))

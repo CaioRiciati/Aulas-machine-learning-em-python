@@ -14,4 +14,5 @@ y_table = table.iloc[:, 4].values
 #se eu printar isso aki, vai aparecer o tipo de dado, ou seja, o tipo do y_table, que é um array
 type(y_table)
 
+#o x é usado para guardar os previsores, ou seja, as colunas 1, 2 e 3, e o y é usado para guardar a classe, ou seja, a coluna 4, que é a coluna de inadimplentes
 print(x_table)

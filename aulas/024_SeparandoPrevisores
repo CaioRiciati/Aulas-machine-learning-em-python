@@ -1,0 +1,13 @@
+import pandas as pd
+import seaborn as sb
+import plotly.express as px
+import matplotlib.pyplot as plt
+import numpy as np
+
+census = pd.read_csv(r"C:\Users\esdra\OneDrive\Desktop\Aulas-machine-learning-em-python\Bases de dados\census.csv")
+
+#aula 24 - Separando previsores e classe
+#hoje em dia é mais recomendado usar o .to_numpy() do que o .values, pois o .values pode retornar um DataFrame ou uma Series dependendo do número de colunas selecionadas, enquanto o .to_numpy() sempre retorna um array NumPy.
+xCensus = census.iloc[:, 0:14].to_numpy()
+yCensus = census.iloc[:, 14].to_numpy()
+print(yCensus)

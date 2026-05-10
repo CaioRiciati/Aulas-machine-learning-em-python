@@ -1,0 +1,45 @@
+import pandas as pd 
+import numpy as np 
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+import plotly.express as px
+from sklearn.preprocessing import LabelEncoder
+
+
+risc_credito = pd.read_csv(r"C:\Users\esdra\OneDrive\Desktop\Aulas-machine-learning-em-python\Bases de dados\risco_credito.csv")
+
+print(risc_credito)
+
+
+Xrisc= risc_credito.iloc[:,0:4].to_numpy()
+Yrisc = risc_credito.iloc[:,4].to_numpy()
+
+
+historia = LabelEncoder()
+divida = LabelEncoder()
+garantia = LabelEncoder()
+renda = LabelEncoder()
+risco = LabelEncoder()
+
+Xrisc[:,0 ] = historia.fit_transform(Xrisc[:,0])
+Xrisc[:,1 ] = divida.fit_transform(Xrisc[:,1])
+Xrisc[:,2 ] = garantia.fit_transform(Xrisc[:,2])
+Xrisc[:,3 ] = renda.fit_transform(Xrisc[:,3])
+
+
+print(Xrisc)
+
+import pickle as pk
+
+with open('risco_credit.pkl', 'wb') as f:
+    pk.dump([Xrisc,Yrisc], f)
+
+from sklearn.naive_bayes import GaussianNB
+
+
+naive_risco = GaussianNB()
+naive_risco.fit(Xrisc,Yrisc)
+
+previsoes = naive_risco.predict([[0,0,1,2],[2,0,0,0]])
+
+print(previsoes)

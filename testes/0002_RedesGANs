@@ -1,0 +1,9 @@
+import tensorflow as tf
+import matplotlib.pyplot as plt
+import os, random, time
+import numpy as np
+From IPython.display import clear_output
+
+print("GPU devices:", tf.config.list_physical_devices('GPU'))
+
+1 2 3 
